@@ -37,8 +37,8 @@ fun DropdownMenuBox(currency: List<Currency>?, viewModel: CompareViewModel) {
     var selectedText by remember {
         mutableStateOf(
             Currency(
-                "CAD",
-                "https://www.xe.com/static-images/cad.static.0bfb6a6d0adf4f3b1c28c0c90248b18b.svg",
+                "",
+                "",
                 "",
                 false,
                 0.0

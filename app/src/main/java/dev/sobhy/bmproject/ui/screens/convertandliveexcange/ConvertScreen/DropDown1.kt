@@ -40,13 +40,15 @@ import dev.sobhy.bmproject.data.model.Currency
 fun DropdownMenuBox1(currency: List<Currency>?, viewModel: ConvertViewModel) {
     val context = LocalContext.current
     var expanded by remember { mutableStateOf(false) }
-    var selectedText by remember { mutableStateOf(Currency(
-        "CAD",
-        "https://www.xe.com/static-images/cad.static.0bfb6a6d0adf4f3b1c28c0c90248b18b.svg",
-        "",
-        false,
-        0.0
-    ) ) }
+    var selectedText by remember { mutableStateOf(
+        Currency(
+            "",
+            "",
+            "",
+            false,
+            0.0
+        )
+    ) }
 
     Box {
         ExposedDropdownMenuBox(

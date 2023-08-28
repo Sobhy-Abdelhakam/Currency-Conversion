@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircleOutline
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -58,7 +59,7 @@ fun LiveExchangeScreen(viewModel: LiveExchangeViewModel) {
         }
 
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(text = "live exchange rate", fontSize = 18.sp, fontWeight = FontWeight.Bold)
+            Text(text = "live exchange rates", fontSize = 18.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier.weight(1f))
             OutlinedButton(onClick = {
                 showDialog = true
@@ -67,20 +68,24 @@ fun LiveExchangeScreen(viewModel: LiveExchangeViewModel) {
                 Text(text = "Add to favorite")
             }
         }
-        Text(text = "My Portfolio", fontSize = 18.sp)
-        Spacer(modifier = Modifier.height(12.dp))
-        Box(modifier = Modifier.fillMaxWidth().wrapContentHeight()) {
+        Text(text = "My Portfolio", fontSize = 18.sp, modifier = Modifier.padding(top = 12.dp))
+        Spacer(modifier = Modifier.height(8.dp))
+        Box(modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight()) {
             if (state.value.savedCurrencies.isEmpty()) {
-                Text(text = "No Currencies Saved", modifier = Modifier.padding(8.dp))
+                Text(text = "There are no saved Currencies" , modifier = Modifier.padding(8.dp))
             }
             Loading(isLoading = state.value.isLoading, modifier = Modifier.align(Alignment.Center))
 
-            Column(modifier = Modifier.fillMaxWidth().wrapContentHeight()) {
+            Column(modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()) {
                 val list = state.value.savedCurrencies
                 repeat(list.size) { index ->
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.padding(vertical = 16.dp)
+                        modifier = Modifier.padding(vertical = 14.dp)
                     ) {
                         AsyncImage(
                             model = ImageRequest.Builder(context).data(list[index].flagUrl)
@@ -100,12 +105,12 @@ fun LiveExchangeScreen(viewModel: LiveExchangeViewModel) {
                         Spacer(modifier = Modifier.weight(1f))
                         if (list[index].amount != 0.0) {
                             val amountAfterRound =
-                                BigDecimal(list[index].amount).setScale(2, RoundingMode.HALF_EVEN)
+                                BigDecimal(list[index].amount).setScale(4, RoundingMode.HALF_EVEN)
                                     .toDouble()
                             Text(text = amountAfterRound.toString(), fontWeight = FontWeight.Bold)
                         }
-
                     }
+                    Divider(modifier = Modifier.height(0.5.dp))
                 }
             }
         }

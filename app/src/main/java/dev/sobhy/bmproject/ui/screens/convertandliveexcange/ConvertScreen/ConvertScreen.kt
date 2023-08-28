@@ -33,6 +33,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dev.sobhy.bmproject.ui.screens.convertandliveexcange.liveexchangefeature.LiveExchangeViewModel
+import kotlin.math.roundToInt
 
 @Composable
 fun ConvertScreen(viewModel: ConvertViewModel, viewModel1: LiveExchangeViewModel) {
@@ -46,14 +47,15 @@ fun ConvertScreen(viewModel: ConvertViewModel, viewModel1: LiveExchangeViewModel
 
 
     val result = viewModel.observeCurrenciesConvertLivedata().observeAsState().value?.result
-    amountTo = result.toString()
+    val res = result?.let { (it * 10000.0).roundToInt() / 10000.0 } ?: ""
+    amountTo = res.toString()
 
 
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()
-            .padding(top= 32.dp)
+            .padding(top = 32.dp)
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -65,8 +67,7 @@ fun ConvertScreen(viewModel: ConvertViewModel, viewModel1: LiveExchangeViewModel
             verticalAlignment = Alignment.CenterVertically
         ) {
             Spacer(modifier = Modifier.height(20.dp))
-            Column() {
-
+            Column {
                 Text(
                     text = "Amount",
                     style = TextStyle(
@@ -106,8 +107,7 @@ fun ConvertScreen(viewModel: ConvertViewModel, viewModel1: LiveExchangeViewModel
 
             }
             Spacer(modifier = Modifier.width(28.dp))
-            Column() {
-
+            Column {
                 Text(
                     text = "From",
                     style = TextStyle(
@@ -133,12 +133,12 @@ fun ConvertScreen(viewModel: ConvertViewModel, viewModel1: LiveExchangeViewModel
                 )
 
                 OutlinedTextField(
-                    value = if(amountFrom.isNotBlank()){
+                    value = if (amountFrom.isNotBlank()) {
                         amountTo
-                    } else{
-                          ""
+                    } else {
+                        ""
                     },
-                    onValueChange = { amountTo = it },
+                    onValueChange = { },
                     shape = RoundedCornerShape(size = 20.dp),
                     singleLine = true,
                     modifier = Modifier
@@ -156,11 +156,14 @@ fun ConvertScreen(viewModel: ConvertViewModel, viewModel1: LiveExchangeViewModel
             onClick = {
                 if (toCurrency != null && fromCurrency != null && amountFrom.isNotEmpty()) {
                     viewModel.convertCurrencies(fromCurrency, toCurrency, amountFrom.toDouble())
+                }
+                if (fromCurrency != null && amountFrom.isNotEmpty()) {
                     viewModel1.getCompareResponseAndSaveInDatabaseWithAmountValue(
                         amountFrom.toDouble(),
                         fromCurrency
                     )
                 }
+
             },
             colors = ButtonDefaults.buttonColors(Color(0xFF363636)),
             modifier = Modifier

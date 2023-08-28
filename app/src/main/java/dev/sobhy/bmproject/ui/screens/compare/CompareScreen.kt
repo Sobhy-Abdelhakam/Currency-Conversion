@@ -1,7 +1,6 @@
 package dev.sobhy.bmproject.ui.screens.compare
 
 
-
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -33,7 +32,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import dev.sobhy.bmproject.data.model.Currency
+import kotlin.math.roundToInt
 
 @Composable
 fun CompareScreen(viewModel: CompareViewModel) {
@@ -48,16 +47,19 @@ fun CompareScreen(viewModel: CompareViewModel) {
     val toCurrencyTwo = viewModel.observe_ToLivedata().observeAsState().value?.code
 
 
-val result = viewModel.observeCurrenciesCompareLivedata().observeAsState().value?.result
-val result1 = viewModel.currencyCompareLiveData1.observeAsState().value?.result
+    val result = viewModel.observeCurrenciesCompareLivedata().observeAsState().value?.result
+    val res = result?.let { (it * 10000.0).roundToInt() / 10000.0 } ?: ""
+    amountTo = res.toString()
 
-    amountTo = result.toString()
-    amountToTwo = result1.toString()
+    val result1 = viewModel.currencyCompareLiveData1.observeAsState().value?.result
+    val res1 = result1?.let { (it * 10000.0).roundToInt() / 10000.0 } ?: ""
+    amountToTwo = res1.toString()
+
+
 
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 32.dp)
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
@@ -100,13 +102,13 @@ val result1 = viewModel.currencyCompareLiveData1.observeAsState().value?.result
                     .padding(bottom = 15.dp, top = 15.dp)
 
             )
-            DropdownMenuBox(currencies,viewModel)
+            DropdownMenuBox(currencies, viewModel)
 
             Spacer(modifier = Modifier.size(17.dp))
             OutlinedTextField(
-                value = if(amountFrom.isNotBlank()){
+                value = if (amountFrom.isNotBlank()) {
                     amountTo
-                } else{
+                } else {
                     ""
                 },
                 onValueChange = { amountTo = it },
@@ -117,7 +119,6 @@ val result1 = viewModel.currencyCompareLiveData1.observeAsState().value?.result
                     .height(49.dp)
                     .background(color = Color(0xFFF9F9F9)),
                 readOnly = true
-
 
 
             )
@@ -138,7 +139,8 @@ val result1 = viewModel.currencyCompareLiveData1.observeAsState().value?.result
                     .padding(bottom = 15.dp)
 
             )
-            DropdownMenuBox1(currencies, viewModel,
+            DropdownMenuBox1(
+                currencies, viewModel,
                 //onSelected = { target1 = it }
             )
             Text(
@@ -152,15 +154,16 @@ val result1 = viewModel.currencyCompareLiveData1.observeAsState().value?.result
                     .padding(bottom = 15.dp, top = 15.dp)
 
             )
-            DropdownMenuBox2(currencies, viewModel,
+            DropdownMenuBox2(
+                currencies, viewModel,
                 //onSelected = { target1 = it }
             )
 
             Spacer(modifier = Modifier.size(17.dp))
             OutlinedTextField(
-                value = if(amountFrom.isNotBlank()){
+                value = if (amountFrom.isNotBlank()) {
                     amountToTwo
-                } else{
+                } else {
                     ""
                 },
                 onValueChange = { amountToTwo = it },
@@ -179,14 +182,14 @@ val result1 = viewModel.currencyCompareLiveData1.observeAsState().value?.result
     }
     Button(
         onClick = {
-            if (toCurrency != null&& fromCurrency!= null&& amountFrom.isNotEmpty()) {
-                viewModel.compareCurrencies(fromCurrency,toCurrency,amountFrom.toDouble())
+            if (toCurrency != null && fromCurrency != null && amountFrom.isNotEmpty()) {
+                viewModel.compareCurrencies(fromCurrency, toCurrency, amountFrom.toDouble())
             }
-            if (fromCurrency != null&& toCurrencyTwo!= null && amountFrom.isNotEmpty()) {
-                viewModel.compareCurrencies1(fromCurrency,toCurrencyTwo,amountFrom.toDouble())
+            if (fromCurrency != null && toCurrencyTwo != null && amountFrom.isNotEmpty()) {
+                viewModel.compareCurrencies1(fromCurrency, toCurrencyTwo, amountFrom.toDouble())
             }
 
-            Log.d("devil",result.toString())
+            Log.d("devil", result.toString())
 
 
         },
@@ -213,7 +216,7 @@ val result1 = viewModel.currencyCompareLiveData1.observeAsState().value?.result
 
 
     }
-    
+
 
 }
 

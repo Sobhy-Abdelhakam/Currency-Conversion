@@ -76,7 +76,7 @@ class LiveExchangeViewModel : ViewModel() {
             viewModelScope.launch {
                 val listOfCodeInDb = state.value.savedCurrencies.map { currency -> currency.code }
                 val compareResponse =
-                    repository.getComparisonResponse(amountFrom, from, listOfCodeInDb)
+                    repository.getComparisonResponse(1.0, from, listOfCodeInDb)
                 for (apiItem in compareResponse.comparisonRates) {
                     val existingCurrency = repository.getCurrenciesByCode(apiItem.currencyCode)
                     existingCurrency.let {
