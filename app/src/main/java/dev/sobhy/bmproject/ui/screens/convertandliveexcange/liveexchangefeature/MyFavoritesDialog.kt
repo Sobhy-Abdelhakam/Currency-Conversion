@@ -82,10 +82,7 @@ fun MyFavoritesDialog(show: Boolean, viewModel: LiveExchangeViewModel, onDismiss
                         .padding(6.dp)
                 ) {
                     val state = viewModel.state.collectAsState()
-                    Loading(
-                        isLoading = state.value.isLoading,
-                        modifier = Modifier.align(Alignment.Center)
-                    )
+                    Loading(isLoading = state.value.isLoading,)
                     Column(
                         modifier = Modifier
                             .padding(12.dp)

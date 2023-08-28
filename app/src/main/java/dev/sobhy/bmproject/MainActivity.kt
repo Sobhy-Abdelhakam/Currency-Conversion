@@ -60,7 +60,7 @@ class MainActivity : ComponentActivity() {
 
                         Image(
                             painter = painterResource(id = R.drawable.img),
-                            contentDescription = "",
+                            contentDescription = "background image",
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .drawWithContent {

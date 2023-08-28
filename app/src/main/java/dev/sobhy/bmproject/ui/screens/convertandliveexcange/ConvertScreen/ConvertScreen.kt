@@ -157,9 +157,9 @@ fun ConvertScreen(viewModel: ConvertViewModel, viewModel1: LiveExchangeViewModel
                 if (toCurrency != null && fromCurrency != null && amountFrom.isNotEmpty()) {
                     viewModel.convertCurrencies(fromCurrency, toCurrency, amountFrom.toDouble())
                 }
-                if (fromCurrency != null && amountFrom.isNotEmpty()) {
+                if (fromCurrency != null) {
                     viewModel1.getCompareResponseAndSaveInDatabaseWithAmountValue(
-                        amountFrom.toDouble(),
+                        1.0,
                         fromCurrency
                     )
                 }

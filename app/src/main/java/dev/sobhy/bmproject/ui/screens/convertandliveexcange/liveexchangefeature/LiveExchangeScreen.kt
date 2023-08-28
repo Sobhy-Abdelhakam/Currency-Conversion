@@ -76,7 +76,7 @@ fun LiveExchangeScreen(viewModel: LiveExchangeViewModel) {
             if (state.value.savedCurrencies.isEmpty()) {
                 Text(text = "There are no saved Currencies" , modifier = Modifier.padding(8.dp))
             }
-            Loading(isLoading = state.value.isLoading, modifier = Modifier.align(Alignment.Center))
+//            Loading(isLoading = state.value.isLoading, modifier = Modifier.align(Alignment.Center))
 
             Column(modifier = Modifier
                 .fillMaxWidth()
