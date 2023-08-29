@@ -45,6 +45,7 @@ import coil.compose.AsyncImage
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import dev.sobhy.bmproject.data.model.Currency
+import dev.sobhy.bmproject.ui.screens.composable.ErrorDialog
 import dev.sobhy.bmproject.ui.screens.composable.Loading
 
 @Composable
@@ -82,7 +83,16 @@ fun MyFavoritesDialog(show: Boolean, viewModel: LiveExchangeViewModel, onDismiss
                         .padding(6.dp)
                 ) {
                     val state = viewModel.state.collectAsState()
-                    Loading(isLoading = state.value.isLoading,)
+                    Loading(isLoading = state.value.isLoading)
+                    ErrorDialog(
+                        shouldShow = state.value.dialogModel?.isShouldShow ?: false,
+                        message = state.value.dialogModel?.message ?: "",
+                        onDismiss = {
+                            onDismiss()
+                            viewModel.dismissDialog()
+
+                        }
+                    )
                     Column(
                         modifier = Modifier
                             .padding(12.dp)

@@ -1,6 +1,7 @@
 package dev.sobhy.bmproject.ui.screens.convertandliveexcange.ConvertScreen
 
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -26,11 +27,23 @@ class ConvertViewModel : ViewModel() {
 
     fun getCurrencies() {
         viewModelScope.launch {
-            currencyLiveData.value = repository.getCurrencies().currencies }
+            try {
+                currencyLiveData.value = repository.getCurrencies().currencies
+            }catch (e: Exception){
+                Log.e("convertViewModel", e.message.toString())
+            }
+
+        }
     }
     fun convertCurrencies(from: String, to:String,amount: Double){
         viewModelScope.launch{
-            currencyConvertLiveData.value = repository.getConvertResponse(from,to,amount)
+            try {
+                currencyConvertLiveData.value = repository.getConvertResponse(from,to,amount)
+            } catch (e: Exception){
+                currencyConvertLiveData.value = ConvertResponse(0.0, "")
+                Log.e("convertViewModel", e.message.toString())
+            }
+
         }
     }
     fun observeCurrenciesLivedata():LiveData<List<Currency>>{
@@ -47,8 +60,5 @@ class ConvertViewModel : ViewModel() {
     fun observeToLivedata():LiveData<Currency>{
         return to
     }
-
-
-
 
 }
