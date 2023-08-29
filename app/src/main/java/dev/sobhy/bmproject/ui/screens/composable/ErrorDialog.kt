@@ -4,7 +4,9 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
+import dev.sobhy.bmproject.R
 
 @Composable
 fun ErrorDialog(
@@ -17,10 +19,10 @@ fun ErrorDialog(
         onDismissRequest = { onDismiss() },
         confirmButton = {
             Button(onClick = { onDismiss() }) {
-                Text(text = "Close")
+                Text(text = stringResource(R.string.close))
             }
         },
-        title = { Text(text = "Error", fontSize = 20.sp) },
+        title = { Text(text = stringResource(R.string.error), fontSize = 20.sp) },
         text = { Text(text = message) }
     )
 }

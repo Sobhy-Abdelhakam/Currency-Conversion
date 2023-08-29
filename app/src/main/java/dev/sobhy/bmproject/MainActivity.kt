@@ -51,7 +51,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             BMProjectTheme {
                 val pagerState = rememberPagerState { 2 }
-                val tabTitles = listOf("Convert", "Compare")
+                val tabTitles = listOf(getString(R.string.convert), getString(R.string.compare))
                 val coroutineScope = rememberCoroutineScope()
 
                 Column(modifier = Modifier.fillMaxWidth()) {
@@ -64,18 +64,18 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .drawWithContent {
-                                drawContent()
-                                drawRect(
-                                    brush = Brush.verticalGradient(
-                                        colors = listOf(
-                                            Color.White.copy(alpha = 0.1f),
-                                            Color.Black.copy(alpha = 0.5f)
-                                        ),
-                                        startY = size.height - (700),
-                                        endY = size.height
+                                    drawContent()
+                                    drawRect(
+                                        brush = Brush.verticalGradient(
+                                            colors = listOf(
+                                                Color.White.copy(alpha = 0.1f),
+                                                Color.Black.copy(alpha = 0.5f)
+                                            ),
+                                            startY = size.height - (700),
+                                            endY = size.height
+                                        )
                                     )
-                                )
-                            }
+                                }
                                 .constrainAs(image) {
                                     top.linkTo(parent.top)
                                     start.linkTo(parent.start)
@@ -84,7 +84,7 @@ class MainActivity : ComponentActivity() {
                         )
 
                         Text(
-                            text = "ConCurrency",
+                            text = getString(R.string.concurrency),
                             fontSize = 25.sp,
                             color = Color.White,
                             fontWeight = FontWeight.Bold,
@@ -107,7 +107,7 @@ class MainActivity : ComponentActivity() {
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Text(
-                                text = "Currency Converter",
+                                text = getString(R.string.currency_converter),
                                 style = TextStyle(
                                     fontSize = 23.sp,
                                     fontWeight = FontWeight(600),
@@ -116,7 +116,7 @@ class MainActivity : ComponentActivity() {
                             )
                             Spacer(modifier = Modifier.height(4.dp))
                             Text(
-                                text = "Check live foreign currency exchange rates",
+                                text = getString(R.string.check_live_foreign_currency_exchange_rates),
                                 style = TextStyle(
                                     fontSize = 13.sp,
                                     fontWeight = FontWeight(400),

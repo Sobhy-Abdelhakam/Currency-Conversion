@@ -27,11 +27,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import dev.sobhy.bmproject.R
 import dev.sobhy.bmproject.ui.screens.convertandliveexcange.liveexchangefeature.LiveExchangeViewModel
 import kotlin.math.roundToInt
 
@@ -69,7 +71,7 @@ fun ConvertScreen(viewModel: ConvertViewModel, viewModel1: LiveExchangeViewModel
             Spacer(modifier = Modifier.height(20.dp))
             Column {
                 Text(
-                    text = "Amount",
+                    text = stringResource(R.string.amount),
                     style = TextStyle(
                         fontSize = 16.sp,
                         fontWeight = FontWeight(600),
@@ -92,7 +94,7 @@ fun ConvertScreen(viewModel: ConvertViewModel, viewModel1: LiveExchangeViewModel
 
                 )
                 Text(
-                    text = "To",
+                    text = stringResource(R.string.to),
                     style = TextStyle(
                         fontSize = 16.sp,
                         fontWeight = FontWeight(600),
@@ -109,7 +111,7 @@ fun ConvertScreen(viewModel: ConvertViewModel, viewModel1: LiveExchangeViewModel
             Spacer(modifier = Modifier.width(28.dp))
             Column {
                 Text(
-                    text = "From",
+                    text = stringResource(R.string.from),
                     style = TextStyle(
                         fontSize = 16.sp,
                         fontWeight = FontWeight(600),
@@ -121,7 +123,7 @@ fun ConvertScreen(viewModel: ConvertViewModel, viewModel1: LiveExchangeViewModel
                 )
                 DropdownMenuBox1(currencies, viewModel)
                 Text(
-                    text = "Amount",
+                    text = stringResource(id = R.string.amount),
                     style = TextStyle(
                         fontSize = 16.sp,
                         fontWeight = FontWeight(600),
@@ -176,7 +178,7 @@ fun ConvertScreen(viewModel: ConvertViewModel, viewModel1: LiveExchangeViewModel
 
             ) {
             Text(
-                text = "Convert ",
+                text = stringResource(id = R.string.convert),
                 style = TextStyle(
                     fontSize = 16.sp,
                     fontWeight = FontWeight(700),

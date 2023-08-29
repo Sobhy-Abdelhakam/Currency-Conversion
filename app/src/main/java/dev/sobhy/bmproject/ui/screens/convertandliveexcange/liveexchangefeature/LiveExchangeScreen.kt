@@ -30,12 +30,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
+import dev.sobhy.bmproject.R
 import dev.sobhy.bmproject.ui.screens.composable.Loading
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -59,24 +61,23 @@ fun LiveExchangeScreen(viewModel: LiveExchangeViewModel) {
         }
 
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(text = "live exchange rates", fontSize = 18.sp, fontWeight = FontWeight.Bold)
+            Text(text = stringResource(R.string.live_exchange_rates), fontSize = 18.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier.weight(1f))
             OutlinedButton(onClick = {
                 showDialog = true
             }) {
                 Icon(imageVector = Icons.Filled.AddCircleOutline, contentDescription = "Add icon")
-                Text(text = "Add to favorite")
+                Text(text = stringResource(R.string.add_to_favorite))
             }
         }
-        Text(text = "My Portfolio", fontSize = 18.sp, modifier = Modifier.padding(top = 12.dp))
+        Text(text = stringResource(R.string.my_portfolio), fontSize = 18.sp, modifier = Modifier.padding(top = 12.dp))
         Spacer(modifier = Modifier.height(8.dp))
         Box(modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()) {
             if (state.value.savedCurrencies.isEmpty()) {
-                Text(text = "There are no saved Currencies" , modifier = Modifier.padding(8.dp))
+                Text(text = stringResource(R.string.there_are_no_saved_currencies) , modifier = Modifier.padding(8.dp))
             }
-//            Loading(isLoading = state.value.isLoading, modifier = Modifier.align(Alignment.Center))
 
             Column(modifier = Modifier
                 .fillMaxWidth()

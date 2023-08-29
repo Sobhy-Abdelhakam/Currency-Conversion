@@ -37,6 +37,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
@@ -44,6 +45,7 @@ import androidx.compose.ui.window.DialogProperties
 import coil.compose.AsyncImage
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
+import dev.sobhy.bmproject.R
 import dev.sobhy.bmproject.data.model.Currency
 import dev.sobhy.bmproject.ui.screens.composable.ErrorDialog
 import dev.sobhy.bmproject.ui.screens.composable.Loading
@@ -98,7 +100,7 @@ fun MyFavoritesDialog(show: Boolean, viewModel: LiveExchangeViewModel, onDismiss
                             .padding(12.dp)
                     ) {
                         Text(
-                            text = "My Favorites",
+                            text = stringResource(R.string.my_favorites),
                             color = Color.Black,
                             fontWeight = FontWeight.Bold
                         )

@@ -27,11 +27,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import dev.sobhy.bmproject.R
 import kotlin.math.roundToInt
 
 @Composable
@@ -69,7 +71,7 @@ fun CompareScreen(viewModel: CompareViewModel) {
         Column() {
 
             Text(
-                text = "Amount",
+                text = stringResource(id = R.string.amount),
                 style = TextStyle(
                     fontSize = 16.sp,
                     fontWeight = FontWeight(600),
@@ -92,7 +94,7 @@ fun CompareScreen(viewModel: CompareViewModel) {
 
             )
             Text(
-                text = "Targeted currency",
+                text = stringResource(R.string.targeted_currency),
                 style = TextStyle(
                     fontSize = 16.sp,
                     fontWeight = FontWeight(600),
@@ -129,7 +131,7 @@ fun CompareScreen(viewModel: CompareViewModel) {
         Column() {
 
             Text(
-                text = "From",
+                text = stringResource(id = R.string.from),
                 style = TextStyle(
                     fontSize = 16.sp,
                     fontWeight = FontWeight(600),
@@ -144,7 +146,7 @@ fun CompareScreen(viewModel: CompareViewModel) {
                 //onSelected = { target1 = it }
             )
             Text(
-                text = "Targeted currency",
+                text = stringResource(id = R.string.targeted_currency),
                 style = TextStyle(
                     fontSize = 16.sp,
                     fontWeight = FontWeight(600),
@@ -204,7 +206,7 @@ fun CompareScreen(viewModel: CompareViewModel) {
 
         ) {
         Text(
-            text = "Compare ",
+            text = stringResource(id = R.string.compare),
             style = TextStyle(
                 fontSize = 18.sp,
                 fontWeight = FontWeight(700),

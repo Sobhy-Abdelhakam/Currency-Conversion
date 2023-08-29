@@ -13,9 +13,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import dev.sobhy.bmproject.R
 
 @Composable
 fun Loading(isLoading: Boolean) {
@@ -33,7 +35,7 @@ fun Loading(isLoading: Boolean) {
         ) {
             CircularProgressIndicator()
             Spacer(modifier = Modifier.height(20.dp))
-            Text(text = "Loading...", fontSize = 20.sp, color = Color.Black)
+            Text(text = stringResource(R.string.loading), fontSize = 20.sp, color = Color.Black)
         }
 
     }
